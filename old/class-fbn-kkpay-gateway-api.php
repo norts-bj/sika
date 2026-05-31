@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This is a fake gateway api, used simply as an example throughout our example gateways.
+ * This is a fake gateway api, used simply as an example throughout our FBN KKPay Gateways.
  */
 class ExampleGatewayApi
 {

@@ -27,12 +27,12 @@ class ExampleGatewayOnsiteSubscriptionModuleClass extends SubscriptionModule
     ) {
         try {
             // Step 1: Validate any data passed from the gateway fields in $gatewayData.  Throw the PaymentGatewayException if the data is invalid.
-            if (empty($gatewayData['example-gateway-id'])) {
-                throw new PaymentGatewayException(__('Example payment ID is required.', 'example-give'));
+            if (empty($gatewayData['fbn-kkpay-gateway-id'])) {
+                throw new PaymentGatewayException(__('Example payment ID is required.', 'fbn-kkpay-gateway'));
             }
 
             // Step 2: Create a subscription with your gateway.
-            $response = ExampleGatewayApi::createSubscription(['transaction_id' => $gatewayData['example-gateway-id']]);
+            $response = ExampleGatewayApi::createSubscription(['transaction_id' => $gatewayData['fbn-kkpay-gateway-id']]);
 
             // Step 3: Return a command to complete the subscription. You can alternatively return SubscriptionProcessing for gateways that require a webhook or similar to confirm that the subscription is complete. SubscriptionProcessing will trigger an email notification, configurable in the settings.
             return new SubscriptionComplete($response['transaction_id'], $response['id']);
@@ -45,7 +45,7 @@ class ExampleGatewayOnsiteSubscriptionModuleClass extends SubscriptionModule
 
             DonationNote::create([
                 'donationId' => $donation->id,
-                'content' => sprintf(esc_html__('Donation failed. Reason: %s', 'example-give'), $errorMessage)
+                'content' => sprintf(esc_html__('Donation failed. Reason: %s', 'fbn-kkpay-gateway'), $errorMessage)
             ]);
 
             throw new PaymentGatewayException($errorMessage);

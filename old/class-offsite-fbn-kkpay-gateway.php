@@ -13,7 +13,7 @@ use Give\Framework\PaymentGateways\PaymentGateway;
 /**
  * @inheritDoc
  */
-class ExampleGatewayOffsiteClass extends PaymentGateway
+class FbnKkpayGatewayOffsiteClass extends PaymentGateway
 {
     /**
      * @inheritDoc
@@ -43,7 +43,7 @@ class ExampleGatewayOffsiteClass extends PaymentGateway
      */
     public function getName(): string
     {
-        return __('Example Gateway - Offsite', 'example-give');
+        return __('FBN KKPay Gateway - Offsite', 'fbn-kkpay-gateway');
     }
 
     /**
@@ -51,7 +51,7 @@ class ExampleGatewayOffsiteClass extends PaymentGateway
      */
     public function getPaymentMethodLabel(): string
     {
-        return __('Example Gateway - Offsite', 'example-give');
+        return __('FBN KKPay Gateway - Offsite', 'fbn-kkpay-gateway');
     }
 
     /**
@@ -59,7 +59,7 @@ class ExampleGatewayOffsiteClass extends PaymentGateway
      */
     public function enqueueScript(int $formId)
     {
-        wp_enqueue_script('offsite-example-gateway', plugin_dir_url(__FILE__) . 'js/offsite-example-gateway.js', ['react', 'wp-element'], '1.0.0', true);
+        wp_enqueue_script('offsite-fbn-kkpay-gateway', plugin_dir_url(__FILE__) . 'js/offsite-fbn-kkpay-gateway.js', ['react', 'wp-element'], '1.0.0', true);
     }
 
     /**
@@ -68,7 +68,7 @@ class ExampleGatewayOffsiteClass extends PaymentGateway
     public function formSettings(int $formId): array
     {
         return [
-            'message' => __('You will be taken away to Example to complete the donation!', 'example-give'),
+            'message' => __('You will be taken away to Example to complete the donation!', 'fbn-kkpay-gateway'),
         ];
     }
 
@@ -106,7 +106,7 @@ class ExampleGatewayOffsiteClass extends PaymentGateway
             'm_payment_id' => $donation->id,
             'amount' => $donation->amount->formatToDecimal(),
             'item_name' => $donation->formTitle,
-            'item_description' => sprintf(__('Donation via GiveWP, ID %s', 'example-give'), $donation->id),
+            'item_description' => sprintf(__('Donation via GiveWP, ID %s', 'fbn-kkpay-gateway'), $donation->id),
         ];
     }
 
