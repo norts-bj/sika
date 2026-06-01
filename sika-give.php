@@ -121,6 +121,8 @@ final class Plugin
         // Endpoints REST (webhook KKiaPay)
         add_action('rest_api_init', function () {
             (new \SikaGive\SikaFedapayWebhook())->registerRoutes();
+            (new \SikaGive\SikaKkiapayWebhook())->registerRoutes();
+
         });
 
         // Page intermédiaire de checkout (rewrite rule)

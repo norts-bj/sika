@@ -118,7 +118,7 @@ class Sika_Give_Fedapay {
       //   give_send_back_to_checkout('?payment-mode=' . $purchase_data['post_data']['give-gateway']);
       // }
     } catch (\Throwable $th) {
-      error_log('Fedapay error: ' . $th->getMessage());
+      // error_log('Fedapay error: ' . $th->getMessage());
       give_set_error('api_error', 'Erreur lors du traitement du paiement.');
       give_send_back_to_checkout('?payment-mode=' . $purchase_data['post_data']['give-gateway']);
     }

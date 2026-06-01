@@ -58,7 +58,7 @@ class SikaKkiapayApi
                 if ($this->verifyAmount($paid_amount, $expected_amount)) {
                     return true;
                 } else {
-                    error_log("Sika GiveWP - Kkiapay: Montant payé insuffisant. Attendu: {$expected}, Reçu: {$paid_amount}");
+                    // error_log("Sika GiveWP - Kkiapay: Montant payé insuffisant. Attendu: {$expected}, Reçu: {$paid_amount}");
                     return false;
                 }
             }

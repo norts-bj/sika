@@ -54,7 +54,7 @@ class SikaFedapayGateway extends PaymentGateway
     {
         // Step 1: add any gateway fields to the form using html.  In order to retrieve this data later the name of the input must be inside the key gatewayData (name='gatewayData[input_name]').
         // Step 2: you can alternatively send this data to the $gatewayData param using the filter `givewp_create_payment_gateway_data_{gatewayId}`.
-        return "<div><input type='text' name='gatewayData[example-gateway-id]' placeholder='Example gateway field' /></div>";
+        return "<div><input type='text' name='gatewayData[sika-fedapay-gateway]' placeholder='Example gateway field' /></div>";
     }
 
     public function getLegacyPaymentFormFieldHTML(int $formId, array $args): string

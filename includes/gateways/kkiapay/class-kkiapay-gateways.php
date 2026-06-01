@@ -71,7 +71,7 @@ class SikaKkiapayGateway extends PaymentGateway
             'https://cdn.kkiapay.me/k.js',
             [],
             null,
-            true
+            false
         );
 
         // Notre JS qui pilote le widget dans le contexte GiveWP
@@ -87,12 +87,12 @@ class SikaKkiapayGateway extends PaymentGateway
             'position' => give_get_option('position_kkiapay'),
             'paymentmethod' => give_get_option('payment_method_kkiapay'),
             'theme' => give_get_option('theme_kkiapay'),
-            'publicKey' => give_get_option('kkiapay_give_public_key'),
+            'publicKey' => give_get_option('public_key_kkiapay'),
             'isSandbox' => give_is_test_mode(),
         ];
 
         // On passe les données PHP → JS via window.kkiapaySettings
-        wp_localize_script('sika-kkiapay-gateway', 'kkiapaySettings', $kkiapay_vars);
+        wp_localize_script('sika-kkiapay-gateway', 'sikaKkiapaySettings', $kkiapay_vars);
     }
 
     public function createPayment(Donation $donation, $gatewayData): GatewayCommand
@@ -123,10 +123,11 @@ class SikaKkiapayGateway extends PaymentGateway
         $donation->save();
 
         // PaymentComplete dit à GiveWP : "c'est bon, affiche l'étape succès"
+        give_update_payment_meta($donation->id, '_kkiapay_transaction_id', $transactionId);
         return new PaymentComplete($transactionId);
     }
-    
-        public function refundDonation(Donation $donation): void
+
+    public function refundDonation(Donation $donation): void
     {
         DonationNote::create([
             'donationId' => $donation->id,

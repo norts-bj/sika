@@ -6,8 +6,6 @@ class SikaFedapayWebhook
 {
     public function registerRoutes(): void
     {
-        error_log('SikaFedapayWebhook::registerRoutes called');
-
         register_rest_route('sika-give/v1', '/fedapay/webhook', [
             'methods'             => 'POST',
             'callback'            => [$this, 'handleWebhook'],

@@ -122,7 +122,7 @@ class Sika_Give_Kkiapay {
         give_send_back_to_checkout('?payment-mode=' . $purchase_data['post_data']['give-gateway']);
       }
     } catch (\Throwable $th) {
-      error_log('Kkiapay error: ' . $th->getMessage());
+      // error_log('Kkiapay error: ' . $th->getMessage());
       give_set_error('api_error', 'Erreur lors du traitement du paiement.');
       give_send_back_to_checkout('?payment-mode=' . $purchase_data['post_data']['give-gateway']);
     }
@@ -165,7 +165,7 @@ class Sika_Give_Kkiapay {
           ),
           array(
             'title' => __('Clé publique', 'sika-givewp'),
-            'type' => 'password',
+            'type' => 'text', // 'password',
             'desc_tip' => true,
             'id' => 'public_key_kkiapay',
             'description' => __("Spécifiez votre clé publique (test ou live selon le mode).", 'sika-givewp')
