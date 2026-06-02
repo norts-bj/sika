@@ -15,18 +15,20 @@
       const { publicKey, isSandbox, position, theme, paymentmethod } =
         sikaKkiapaySettings;
 
-      return new Promise((resolve, reject) => {
-        openKkiapayWidget({
+      const initWidgetComponent = {
           amount: amount,
           position: position || "center",
-          theme: theme || "#000000",
+          theme: theme || "#4661b9",
           sandbox: true, // isSandbox,
           key: publicKey,
           email: email,
           name: `${firstName} ${lastName}`,
-          paymentmethod: paymentmethod || "all",
+          // paymentmethod: paymentmethod || "all",
           reason: `Don de ${amount} ${currency}`,
-        });
+        };
+        console.log("initWidgetComponent:", initWidgetComponent);
+      return new Promise((resolve, reject) => {
+        openKkiapayWidget(initWidgetComponent);
 
         addKkiapayListener("success", (response) => {
           resolve({
